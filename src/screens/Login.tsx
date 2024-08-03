@@ -1,15 +1,19 @@
-import React from 'react'
+'use client'
+import React, { useState } from 'react'
 
 const Login = () => {
+
+    const [page, setPage] = useState('login')
+
     return (
         <section className="bg-[#679267] min-h-screen flex box-border justify-center items-center">
             <div className="bg-[#D0F0C0] rounded-2xl flex max-w-3xl p-5 items-center">
-                <div className="md:w-1/2 px-8">
-                    <h2 className="font-bold text-3xl text-[#043927]">Login</h2>
-                    <p className="text-l mt-4 text-[#043927]">Welcome Back, happy to see you again.</p>
-
+                <div className={`md:w-1/2 px-8 transition-transform duration-500 ${page === 'login' ? 'translate-x-0' : 'translate-x-full'}`}>
+                    <h2 className="font-bold text-3xl text-[#043927]">{page === 'login' ? 'Login' : 'Sign Up'}</h2>
+                    <p className="text-l mt-4 text-[#043927]">{page === 'login' ? "Welcome Back, happy to see you again." : "Welcome, happy to see you here."}</p>
                     <form action="" className="flex flex-col gap-4">
-                        <input className="p-2 mt-8 rounded-xl border bg-[#FBFEF1]" type="email" name="email" placeholder="Email" />
+                        {page === 'signup' && <input className="p-2 mt-8 rounded-xl border bg-[#FBFEF1]" type="text" name="text" placeholder="Name" />}
+                        <input className={`p-2 ${page === 'login' ? 'mt-8' : ''} rounded-xl border bg-[#FBFEF1]`} type="email" name="email" placeholder="Email" />
                         <div className="relative">
                             <input className="p-2 rounded-xl border w-full bg-[#FBFEF1]" type="password" name="password" id="password" placeholder="Password" />
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" id="togglePassword"
@@ -33,7 +37,7 @@ const Login = () => {
                                 </path>
                             </svg>
                         </div>
-                        <button className="bg-[#043927] text-white py-2 rounded-xl hover:scale-105 duration-300 hover:bg-[#355E3B] font-medium" type="submit">Login</button>
+                        <button className="bg-[#043927] text-white py-2 rounded-xl hover:scale-105 duration-300 hover:bg-[#355E3B] font-medium">{page === "login" ? "Login" : "Sign Up"}</button>
                     </form>
                     <div className="mt-6  items-center text-[#043927]-100">
                         <p className="text-center text-sm text-[#043927]">OR</p>
@@ -46,17 +50,24 @@ const Login = () => {
                             <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"></path>
                         </svg>
 
-                        Login with Google
+                        {page === 'login' ? "Login with Google" : "Sign up with Google"}
                     </button>
-                    <div className="mt-10 text-sm border-b border-gray-500 py-5 playfair tooltip text-[#043927]">Forget password?</div>
+                    <div className="mt-10 text-sm border-b border-gray-500 py-5 playfair tooltip text-[#043927]">{page === 'login' ? "Forget password?" : ""}</div>
 
                     <div className="mt-4 text-sm flex justify-between items-center container-mr">
-                        <p className="mr-3 md:mr-0 text-[#043927]">If you don't have an account..</p>
-                        <button className="hover:border register text-white bg-[#043927] hover:border-gray-400 rounded-xl py-2 px-5 hover:scale-110 hover:bg-[#002c7424] font-semibold duration-300">Register</button>
+                        {page === 'login' ?
+                            <p className="mr-3 md:mr-0 text-[#043927]">If you don't have an account..</p> :
+                            <p className="mr-3 md:mr-0 text-[#043927]">Already have an account..</p>
+                        }
+                        <button className="hover:border register text-white bg-[#043927] hover:border-gray-400 rounded-xl py-2 px-5 hover:scale-110 hover:bg-[#002c7424] font-semibold duration-300" onClick={() => setPage(page === 'login' ? 'signup' : 'login')}>{page === 'login' ? "Sign up" : "Login"}</button>
                     </div>
                 </div>
                 <div className="md:block hidden w-1/2">
-                    <img className="rounded-2xl max-h-[1600px]" src="https://www.creativehatti.com/wp-content/uploads/2023/07/Cactus-plant-character-waving-hand-and-saying-hi-19-small.jpg" alt="login form image" />
+                    <img
+                        className={`rounded-2xl max-h-[1600px] transition-transform duration-500 ${page === 'login' ? 'translate-x-0' : '-translate-x-full'}`}
+                        src="https://www.creativehatti.com/wp-content/uploads/2023/07/Cactus-plant-character-waving-hand-and-saying-hi-19-small.jpg"
+                        alt="login form image"
+                    />
                 </div>
             </div>
         </section>
