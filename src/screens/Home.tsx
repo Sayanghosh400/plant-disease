@@ -3,10 +3,34 @@ import React, { useState, ChangeEvent } from 'react';
 
 const Home: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
       setSelectedImage(URL.createObjectURL(event.target.files[0]));
+      setSelectedFile(event.target.files[0]);
+    }
+  };
+
+  const handleSubmit = async () => {
+    if (!selectedFile) {
+      alert("No file selected");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('file', selectedFile);
+
+    try {
+      const response = await fetch('http://localhost:8000/process_input', {
+        method: 'POST',
+        body: formData,
+      });
+      const result = await response.json();
+      alert(result.result);
+    } catch (error) {
+      console.error('Error uploading file:', error);
+      alert('Failed to upload file');
     }
   };
 
@@ -27,6 +51,12 @@ const Home: React.FC = () => {
             <span className="text-gray-400">No image selected</span>
           )}
         </div>
+        <button 
+          onClick={handleSubmit} 
+          className="mt-4 bg-blue-500 text-white py-2 px-4 rounded"
+        >
+          Submit
+        </button>
       </div>
     </div>
   );
