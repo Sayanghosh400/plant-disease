@@ -22,7 +22,7 @@ const Home: React.FC = () => {
     formData.append('file', selectedFile);
 
     try {
-      const response = await fetch('http://localhost:8000/process_input', {
+      const response = await fetch('https://leaf-disease-detection-backend.onrender.com/process_input', {
         method: 'POST',
         body: formData,
       });
