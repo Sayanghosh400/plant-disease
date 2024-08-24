@@ -1,9 +1,11 @@
 'use client'
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 
 const Login = () => {
 
     const [page, setPage] = useState('login')
+    const router = useRouter()
 
     return (
         <section className="bg-[#679267] min-h-screen flex box-border justify-center items-center">
@@ -37,7 +39,7 @@ const Login = () => {
                                 </path>
                             </svg>
                         </div>
-                        <button className="bg-[#043927] text-white py-2 rounded-xl hover:scale-105 duration-300 hover:bg-[#355E3B] font-medium">{page === "login" ? "Login" : "Sign Up"}</button>
+                        <button onClick={(e) => {e.preventDefault(); router.push("/home")}} className="bg-[#043927] text-white py-2 rounded-xl hover:scale-105 duration-300 hover:bg-[#355E3B] font-medium">{page === "login" ? "Login" : "Sign Up"}</button>
                     </form>
                     <div className="mt-6  items-center text-[#043927]-100">
                         <p className="text-center text-sm text-[#043927]">OR</p>
