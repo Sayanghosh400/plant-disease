@@ -24,6 +24,11 @@ const Home: React.FC = () => {
     const formData = new FormData();
     formData.append('file', selectedFile);
 
+    // setLoading(false);
+
+    // setDiseaseResult('hello');
+
+
     try {
       const response = await fetch('https://leaf-disease-detection-backend.onrender.com/process_input', {
         method: 'POST',
@@ -69,7 +74,16 @@ const Home: React.FC = () => {
 
         {/* Right side: Disease result and solution */}
         <div className="flex flex-col items-center w-1/2 pl-4">
-          <h3 className="text-xl font-semibold text-green-800">The result will appear here</h3>
+          {!diseaseResult && !loading &&
+            <div className="flex flex-col items-center justify-center">
+              <h3 className="text-xl font-semibold text-green-800">The result will appear here</h3>
+              <img
+                src="/handsplant.png"
+                className=" w-full h-full opacity-40 mt-20"
+              />
+            </div>
+
+          }
           {loading && (
             <div className="mt-10 p-4 bg-green-100 rounded-lg shadow-md w-full text-center">
               <p className="text-green-700">Analyzing your image. Please wait...</p>
@@ -97,7 +111,7 @@ const Home: React.FC = () => {
 
 
           {diseaseResult && !loading && (
-            <div className="mt-10 p-4 bg-green-100 rounded-lg shadow-md w-full text-center">
+            <div className="mt-20 p-4 bg-green-100 rounded-lg shadow-md w-full text-center">
               <h3 className="text-xl font-semibold text-green-800">Detected Disease:</h3>
               <p className="text-green-700 mb-4">{diseaseResult}</p>
               <h4 className="text-lg font-semibold text-green-800">Possible Solutions:</h4>
