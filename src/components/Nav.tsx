@@ -4,7 +4,7 @@ import React from 'react'
 
 const Nav = () => {
     return (
-        <header className="flex flex-col items-center justify-between w-full md:w-6xl px-2 md:px-6 py-2 mx-auto md:flex-row bg-gradient-to-r from-green-300 to-green-500 p-4 border-b-4 border-green-500">
+        <header className="flex flex-col items-center justify-between w-full md:w-6xl px-2 md:px-6 py-2 mx-auto md:flex-row bg-[#679267] p-4">
             <Link href="/home" className="text-indigo-900 z-10 active">
                 <img src="/happyplant.png" className="w-24 py-8 md:py-0 g-image" />
             </Link>

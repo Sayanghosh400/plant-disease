@@ -45,7 +45,7 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-green-300 to-green-500 p-4">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[#679267] p-4">
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-4xl flex">
         {/* Left side: Image input */}
         <div className="flex flex-col items-center w-1/2 pr-4">
