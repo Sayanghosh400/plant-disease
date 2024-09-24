@@ -117,7 +117,7 @@ const Home: React.FC = () => {
               <h4 className="text-lg font-semibold text-green-800">Possible Solutions:</h4>
               <p className="text-green-700">
                 Here are some potential solutions to address the detected disease:
-                <ul className="list-disc list-inside mt-2">
+                <ul className="list-disc pl-4 mt-2 text-left">
                   <li>Ensure proper watering and avoid overwatering.</li>
                   <li>Remove and dispose of infected leaves.</li>
                   <li>Apply organic fungicide if necessary.</li>
